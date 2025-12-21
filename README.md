@@ -1,4 +1,4 @@
-Red de afiliados de bolsos (BAN)
+Red de afiliados de bags (BAN)
 El primer protocolo de marketing de afiliados on-chain diseñado para el crecimiento viral del ecosistema @Bags.
 
 BAN es una capa de infraestructura que permite a cualquier proyecto dentro de Bags escalar su adquisición de usuarios mediante un sistema de referidos transparente, automático y basado en contratos inteligentes.
@@ -34,17 +34,6 @@ Dashboard para Negocios: Analíticas en tiempo real sobre el ROI y los mejores p
 [ ] Semana 4: Pruebas beta y lanzamiento en la red de Bags.
 
 👥 Equipo
-Líder de Desarrollo: [Tu Nombre o Usuario de GitHub]
+Líder de Desarrollo: [Check20]
 
 Entorno de Desarrollo: Gestionado íntegramente desde entorno móvil (Termux / Replit en Huawei JKM-LX3).
-
-💡 Instrucciones para pegar en GitHub:
-En tu repositorio, abre el archivo LÉAME.md.
-
-Pulse el icono del lápiz para editar.
-
-Borra todo y pega este texto.
-
-Baja y dale a "Commit changes" .
-
-¿Quieres que te ayude a redactar el primer tweet para X (Twitter) anunciando que acabas de abrir el repositorio oficial de BAN? Eso le daría mucha visibilidad ante los jueces.
