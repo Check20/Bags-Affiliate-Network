@@ -1,4 +1,4 @@
-Red de afiliados de bags (BAN)
+Red de afiliados de Bags (BAN)
 El primer protocolo de marketing de afiliados on-chain diseñado para el crecimiento viral del ecosistema @Bags.
 
 BAN es una capa de infraestructura que permite a cualquier proyecto dentro de Bags escalar su adquisición de usuarios mediante un sistema de referidos transparente, automático y basado en contratos inteligentes.
