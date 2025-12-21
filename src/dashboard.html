@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>BAN Protocol - Admin Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1; gap: 20px; margin-bottom: 30px; }
+        .card { background: #161b22; padding: 20px; border-radius: 10px; border: 1px solid #30363d; text-align: center; }
+        .card h3 { color: #8b949e; font-size: 0.9rem; margin-bottom: 10px; }
+        .card p { font-size: 1.5rem; font-weight: bold; color: #58a6ff; margin: 0; }
+        table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #30363d; }
+        th { background: #21262d; color: #f0f6fc; }
+        .wallet-highlight { color: #3fb950; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 BAN Protocol Dashboard</h1>
+        <p>Treasury: <span class="wallet-highlight">F15hKB3V5CybacTpPsk6pKDAo7Lzfa6YsyeTuJQvw7Xw</span></p>
+        
+        <div class="stats-grid">
+            <div class="card"><h3>Volumen Total</h3><p>285.28 SOL</p></div>
+            <div class="card"><h3>Afiliados Activos</h3><p>10</p></div>
+            <div class="card"><h3>Comisión (1%)</h3><p>2.85 SOL</p></div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Wallet Afiliado</th>
+                    <th>Código</th>
+                    <th>Ventas</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                </tbody>
+        </table>
+    </div>
+</body>
+</html>
