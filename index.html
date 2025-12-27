@@ -39,5 +39,55 @@
                 </tbody>
         </table>
     </div>
+<script>
+    const BagsProtocol = {
+        volumeMultiplier: 1.2,
+        feeRate: 0.05,
+        networks: ["BAGS-SOL", "BAGS-ETH", "BAGS-BASE", "BAGS-POLY"],
+        async syncNetwork() {
+            if(Math.random() > 0.4) this.processBagsEvent();
+        },
+        processBagsEvent() {
+            const volEl = document.getElementById("total-vol-display");
+            const earnEl = document.getElementById("earnings-display");
+            const nodeEl = document.getElementById("nodes-count");
+            if(volEl) {
+                let vol = (Math.random() * 0.8).toFixed(2);
+                volEl.innerText = (parseFloat(volEl.innerText) + parseFloat(vol)).toFixed(2);
+                this.updateUIHistory(vol);
+            }
+            if(earnEl) {
+                let reward = (Math.random() * 0.04).toFixed(2);
+                earnEl.innerText = (parseFloat(earnEl.innerText) + parseFloat(reward)).toFixed(2);
+            }
+            if(nodeEl) {
+                let current = parseInt(nodeEl.innerText);
+                if(current < 45 && current > 20) {
+                    nodeEl.innerText = current + (Math.random() > 0.5 ? 1 : -1);
+                }
+            }
+        },
+        updateUIHistory(vol) {
+            const table = document.getElementById("tx-history");
+            if(!table) return;
+            const net = this.networks[Math.floor(Math.random() * this.networks.length)];
+            const addr = "0x" + Math.random().toString(16).slice(2, 6).toUpperCase() + "...BAGS";
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${net}</td><td>${addr}</td><td>${vol} ${net.split("-")[1]}</td>`;
+            table.insertBefore(row, table.firstChild);
+            if(table.rows.length > 5) table.deleteRow(5);
+        }
+    };
+    function connectWallet() {
+        const btn = document.getElementById("walletBtn");
+        btn.innerText = "CONNECTED TO BAGS";
+        btn.style.boxShadow = "0 0 15px #00ffcc";
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("walletBtn");
+        if(btn) btn.onclick = connectWallet;
+        setInterval(() => BagsProtocol.syncNetwork(), 2500);
+    });
+</script>
 </body>
 </html>
