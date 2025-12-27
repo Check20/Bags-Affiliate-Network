@@ -23,17 +23,3 @@ Pagos Instantáneos: Liquidación de comisiones al momento de la venta.
 Prueba de socialidad: Sistema antifraude que utiliza los datos sociales de Bags para verificar usuarios reales.
 
 Dashboard para Negocios: Analíticas en tiempo real sobre el ROI y los mejores promotores.
-
-📅 Hoja de Ruta (Fase de Hackathon)
-[ ] Semana 1: Desarrollo de Contratos Inteligentes (Escrow y Bóvedas).
-
-[ ] Semana 2: Integración con la API de Bags y generación de enlaces únicos.
-
-[ ] Semana 3: Interfaz de usuario para comercios y gestión de campañas.
-
-[ ] Semana 4: Pruebas beta y lanzamiento en la red de Bags.
-
-👥 Equipo
-Líder de Desarrollo: [Check20]
-
-Entorno de Desarrollo: Gestionado íntegramente desde entorno móvil (Termux / Replit en Huawei JKM-LX3).
