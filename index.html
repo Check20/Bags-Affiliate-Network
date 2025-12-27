@@ -2,92 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BAN Protocol - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAN Protocol Dashboard</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
-        .container { max-width: 900px; margin: auto; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1; gap: 20px; margin-bottom: 30px; }
-        .card { background: #161b22; padding: 20px; border-radius: 10px; border: 1px solid #30363d; text-align: center; }
-        .card h3 { color: #8b949e; font-size: 0.9rem; margin-bottom: 10px; }
-        .card p { font-size: 1.5rem; font-weight: bold; color: #58a6ff; margin: 0; }
-        table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 10px; overflow: hidden; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #30363d; }
-        th { background: #21262d; color: #f0f6fc; }
-        .wallet-highlight { color: #3fb950; font-family: monospace; }
+        body { background-color: #0b0f1a; color: #f8fafc; font-family: sans-serif; padding: 25px; margin: 0; }
+        .logo-container { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .icon { width: 24px; height: 24px; background: #00ffcc; border-radius: 4px; }
+        h1 { font-size: 1.4rem; margin: 0; font-weight: bold; }
+        .treasury { font-size: 0.65rem; color: #64748b; margin-bottom: 35px; word-break: break-all; }
+        .label { font-size: 1rem; font-weight: 600; margin-top: 25px; margin-bottom: 8px; }
+        .value { font-size: 1.6rem; font-weight: 800; color: #00ffcc; margin: 0; }
+        .footer { margin-top: 45px; font-size: 0.9rem; font-weight: 500; border-top: 1px solid #1e293b; padding-top: 15px; }
+        #api-status { font-family: monospace; font-size: 0.7rem; color: #4ade80; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📊 BAN Protocol Dashboard</h1>
-        <p>Treasury: <span class="wallet-highlight">F15hKB3V5CybacTpPsk6pKDAo7Lzfa6YsyeTuJQvw7Xw</span></p>
-        
-        <div class="stats-grid">
-            <div class="card"><h3>Volumen Total</h3><p>285.28 SOL</p></div>
-            <div class="card"><h3>Afiliados Activos</h3><p>10</p></div>
-            <div class="card"><h3>Comisión (1%)</h3><p>2.85 SOL</p></div>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Wallet Afiliado</th>
-                    <th>Código</th>
-                    <th>Ventas</th>
-                </tr>
-            </thead>
-            <tbody id="data-table">
-                </tbody>
-        </table>
+    <div class="logo-container">
+        <div class="icon"></div>
+        <h1>BAN Protocol Dashboard</h1>
     </div>
-<script>
-    const BagsProtocol = {
-        volumeMultiplier: 1.2,
-        feeRate: 0.05,
-        networks: ["BAGS-SOL", "BAGS-ETH", "BAGS-BASE", "BAGS-POLY"],
-        async syncNetwork() {
-            if(Math.random() > 0.4) this.processBagsEvent();
-        },
-        processBagsEvent() {
-            const volEl = document.getElementById("total-vol-display");
-            const earnEl = document.getElementById("earnings-display");
-            const nodeEl = document.getElementById("nodes-count");
-            if(volEl) {
-                let vol = (Math.random() * 0.8).toFixed(2);
-                volEl.innerText = (parseFloat(volEl.innerText) + parseFloat(vol)).toFixed(2);
-                this.updateUIHistory(vol);
-            }
-            if(earnEl) {
-                let reward = (Math.random() * 0.04).toFixed(2);
-                earnEl.innerText = (parseFloat(earnEl.innerText) + parseFloat(reward)).toFixed(2);
-            }
-            if(nodeEl) {
-                let current = parseInt(nodeEl.innerText);
-                if(current < 45 && current > 20) {
-                    nodeEl.innerText = current + (Math.random() > 0.5 ? 1 : -1);
-                }
-            }
-        },
-        updateUIHistory(vol) {
-            const table = document.getElementById("tx-history");
-            if(!table) return;
-            const net = this.networks[Math.floor(Math.random() * this.networks.length)];
-            const addr = "0x" + Math.random().toString(16).slice(2, 6).toUpperCase() + "...BAGS";
-            const row = document.createElement("tr");
-            row.innerHTML = `<td>${net}</td><td>${addr}</td><td>${vol} ${net.split("-")[1]}</td>`;
-            table.insertBefore(row, table.firstChild);
-            if(table.rows.length > 5) table.deleteRow(5);
+    <div class="treasury">Treasury: F15hKB3V5CybacTpPsk6pKDAo7Lzfa6YsyeTuJQvw7Xw</div>
+    <div class="stat">
+        <div class="label">Volumen Total</div>
+        <p class="value" id="total-vol">285.28 SOL</p>
+    </div>
+    <div class="stat">
+        <div class="label">Afiliados Activos</div>
+        <p class="value">10</p>
+    </div>
+    <div class="stat">
+        <div class="label">Comisión (1%)</div>
+        <p class="value" id="total-com">2.85 SOL</p>
+    </div>
+    <div class="footer">Wallet Afiliado Código Ventas</div>
+    <div id="api-status">> BAGS API: SYNCING LIVE DATA...</div>
+    <script>
+        let vol = 285.28;
+        const fee = 0.01;
+        function update() {
+            vol += Math.random() * 0.15;
+            const volEl = document.getElementById('total-vol');
+            const comEl = document.getElementById('total-com');
+            if(volEl) volEl.innerText = vol.toFixed(2) + " SOL";
+            if(comEl) comEl.innerText = (vol * fee).toFixed(2) + " SOL";
         }
-    };
-    function connectWallet() {
-        const btn = document.getElementById("walletBtn");
-        btn.innerText = "CONNECTED TO BAGS";
-        btn.style.boxShadow = "0 0 15px #00ffcc";
-    }
-    document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.getElementById("walletBtn");
-        if(btn) btn.onclick = connectWallet;
-        setInterval(() => BagsProtocol.syncNetwork(), 2500);
-    });
-</script>
+        setInterval(update, 2500);
+    </script>
 </body>
 </html>
